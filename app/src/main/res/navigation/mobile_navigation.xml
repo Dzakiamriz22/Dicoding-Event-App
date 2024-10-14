@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.dicodingevent.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_event_detail_activity"
+            app:destination="@id/event_detail_activity" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_upcoming_event"
+        android:name="com.example.dicodingevent.ui.upcoming.UpcomingEventFragment"
+        android:label="@string/tittle_upcoming"
+        tools:layout="@layout/fragment_upcoming_event" >
+        <action
+            android:id="@+id/action_navigation_active_event_to_event_detail_activity"
+            app:destination="@id/event_detail_activity" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_finished_event"
+        android:name="com.example.dicodingevent.ui.finished.FinishedEventFragment"
+        android:label="@string/tittle_finished"
+        tools:layout="@layout/fragment_finished_event" >
+        <action
+            android:id="@+id/action_navigation_finished_event_to_event_detail_activity"
+            app:destination="@id/event_detail_activity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/event_detail_activity"
+        android:name="com.example.dicodingevent.ui.detail.EventDetailActivity"
+        tools:layout="@layout/activity_event_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </activity>
+
+</navigation>

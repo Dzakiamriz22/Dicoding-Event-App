@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">DicodingEvent</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_home">Home</string>
+    <string name="btn_upcoming">Upcoming Event</string>
+    <string name="btn_finished">Finished Event</string>
+    <string name="tittle_upcoming">Upcoming Event</string>
+    <string name="tittle_finished">Finished Event</string>
+    <string name="searchbar_hint">Search</string>
+    <string name="img_desc_event_image">Event Image</string>
+    <string name="tittle_event">Name Event</string>
+    <string name="tittle_organizer">Organizer</string>
+    <string name="btn_detail">More Info</string>
+    <string name="title_date">Date</string>
+    <string name="title_quota">Remaining Quota</string>
+    <string name="tittle_description">Description</string>
+    <string name="empty_search">Hasil pencarian tidak ditemukan</string>
+    <string name="search_result">Hasil pencarian</string>
+    <string name="text_description">Lorem ipsum</string>
+    <string name="thumbnail">Lorem ipsum</string>
+</resources>

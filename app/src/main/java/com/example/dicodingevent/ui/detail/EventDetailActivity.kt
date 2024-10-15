@@ -14,7 +14,6 @@ import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
 import com.example.dicodingevent.R
 import com.example.dicodingevent.databinding.ActivityEventDetailBinding
-import com.example.dicodingevent.ui.event_detail.EventDetailViewModel
 
 class EventDetailActivity : AppCompatActivity() {
 
@@ -40,19 +39,29 @@ class EventDetailActivity : AppCompatActivity() {
         eventDetailViewModel.fetchEventDetail(args.id)
 
         eventDetailViewModel.eventDetail.observe(this) { eventDetail ->
-            Glide.with(binding.root.context).load(eventDetail?.imageLogo).into(binding.imgEventPhoto)
-            binding.tvEventName.text = eventDetail?.name
-            binding.tvEventOwner.text = eventDetail?.ownerName
-            binding.tvEventDate.text = eventDetail?.beginTime
-            binding.tvEventQuota.text = eventDetail?.quota.toString()
-            binding.tvDesc.text = HtmlCompat.fromHtml(eventDetail?.description.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
-            setRegisterButton(eventDetail?.link.toString())
+            if (eventDetail != null) {
+                Glide.with(binding.root.context).load(eventDetail.imageLogo).into(binding.imgEventPhoto)
+                binding.tvEventName.text = eventDetail.name
+                binding.tvEventOwner.text = eventDetail.ownerName
+                binding.tvEventDate.text = eventDetail.beginTime
+                binding.tvEventRemainingQuota.text = (eventDetail.quota ?: 0).toString() // Jika quota null, tampilkan 0
+
+                // Pastikan quota dan registrants tidak null sebelum melakukan perhitungan
+                val quota = eventDetail.quota ?: 0
+                val registrants = eventDetail.registrants ?: 0
+
+                // Kalkulasi sisa kuota
+                val remainingQuota = quota - registrants
+                binding.tvEventRemainingQuota.text = remainingQuota.toString()
+
+                binding.tvDesc.text = HtmlCompat.fromHtml(eventDetail.description.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
+                setRegisterButton(eventDetail.link.toString())
+            }
         }
 
         eventDetailViewModel.isLoading.observe(this) {
             showLoading(it)
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -74,5 +83,4 @@ class EventDetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
 }

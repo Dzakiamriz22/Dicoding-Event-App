@@ -67,6 +67,9 @@ data class EventDetailItem(
     @field:SerializedName("quota")
     val quota: Int? = null,
 
+    @field:SerializedName("registrants")
+    val registrants: Int? = null,
+
     @field:SerializedName("name")
     val name: String? = null,
 
